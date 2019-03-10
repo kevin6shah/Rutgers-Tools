@@ -197,12 +197,28 @@ Widget getMeals(Location location, context) {
               GestureDetector(
                 onTap: () {
                   meal = "Breakfast";
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => getGenre(data[0], context),
-                    ),
-                  );
+                  int i = 0;
+                  try {
+                    data[0].genres.length;
+                  } catch (e) {
+                    i = 1;
+                  }
+                  if (i == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => getGenre(data[0], context),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            errorHandle(data[0].mealName, context),
+                      ),
+                    );
+                  }
                 },
                 child: Container(
                   constraints: BoxConstraints.tightFor(height: 250.0),
@@ -230,12 +246,28 @@ Widget getMeals(Location location, context) {
               GestureDetector(
                 onTap: () {
                   meal = "Lunch";
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => getGenre(data[1], context),
-                    ),
-                  );
+                  int i = 0;
+                  try {
+                    data[1].genres.length;
+                  } catch (e) {
+                    i = 1;
+                  }
+                  if (i == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => getGenre(data[1], context),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            errorHandle(data[1].mealName, context),
+                      ),
+                    );
+                  }
                 },
                 child: Container(
                   constraints: BoxConstraints.tightFor(height: 250.0),
@@ -263,12 +295,28 @@ Widget getMeals(Location location, context) {
               GestureDetector(
                 onTap: () {
                   meal = "Dinner";
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => getGenre(data[2], context),
-                    ),
-                  );
+                  int i = 0;
+                  try {
+                    data[2].genres.length;
+                  } catch (e) {
+                    i = 1;
+                  }
+                  if (i == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => getGenre(data[2], context),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            errorHandle(data[2].mealName, context),
+                      ),
+                    );
+                  }
                 },
                 child: Container(
                   constraints: BoxConstraints.tightFor(height: 250.0),
@@ -296,12 +344,28 @@ Widget getMeals(Location location, context) {
               GestureDetector(
                 onTap: () {
                   meal = "Knight";
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => getGenre(data[3], context),
-                    ),
-                  );
+                  int i = 0;
+                  try {
+                    data[3].genres.length;
+                  } catch (e) {
+                    i = 1;
+                  }
+                  if (i == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => getGenre(data[3], context),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            errorHandle(data[3].mealName, context),
+                      ),
+                    );
+                  }
                 },
                 child: Container(
                   constraints: BoxConstraints.tightFor(height: 250.0),
@@ -363,10 +427,11 @@ Widget getGenre(Meal meal, context) {
                   title: Text(data[index].genreName),
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                getItems(data[index], context)));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => getItems(data[index], context),
+                      ),
+                    );
                   },
                   contentPadding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
                 ),
@@ -378,6 +443,64 @@ Widget getGenre(Meal meal, context) {
           },
         ),
       ),
+    ),
+  );
+}
+
+Widget errorHandle(String mealName, BuildContext context) {
+  String image = null;
+  if (mealName == "Breakfast") {
+    image = "https://d9hyo6bif16lx.cloudfront.net/live/img/production/detail/menu/breakfast_breakfast-classics_big-two-do-breakfast.jpg";
+  } else if (mealName == "Lunch") {
+    image = "https://d9hyo6bif16lx.cloudfront.net/live/img/production/detail/menu/lunch-dinner_soups-salads_apple-harvest-salad.jpg";
+  } else if (mealName == "Dinner") {
+    image = "https://www.nelcentro.com/wp-content/uploads/2017/12/dinner-menu_nelcentro_1163.jpg";
+  } else if (mealName == "Knight Room") {
+    image = "https://du7ybees82p4m.cloudfront.net/589dea2e769562.76756712.jpg?width=910&height=512";
+  }
+  return Scaffold(
+    appBar: AppBar(
+      centerTitle: true,
+      backgroundColor: Colors.red[900],
+      title: Text(
+        mealName,
+        style: TextStyle(
+          fontFamily: 'Raleway',
+        ),
+      ),
+    ),
+    body: Column(
+      children: <Widget>[
+        Divider(
+          height: 50.0,
+          color: Colors.transparent,
+        ),
+        Container(
+          child: Text(
+            "Sorry No $mealName API was given by Rutgers today, but here's a nice picture of some $mealName in case you're hungry!",
+            style: TextStyle(
+              fontSize: 22.0,
+              fontFamily: 'Raleway',
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          padding: EdgeInsets.all(16.0),
+        ),
+        Divider(
+          height: 50.0,
+          color: Colors.transparent,
+        ),
+        Container(
+          child: Card(
+            child: Image.network(
+              "https://d9hyo6bif16lx.cloudfront.net/live/img/production/detail/menu/breakfast_breakfast-classics_big-two-do-breakfast.jpg",
+            ),
+            elevation: 5.0,
+          ),
+          padding: EdgeInsets.all(4.0),
+        ),
+      ],
     ),
   );
 }
@@ -437,10 +560,10 @@ _launchURL() async {
         'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=04&locationName=Busch+Dining+Hall&naFlag=1';
   if (campus == "Busch" && meal == "Lunch")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=04&locationName=Busch+Dining+Hall&dtdate=12/5/2018&mealName=Lunch&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=04&locationName=Busch+Dining+Hall&naFlag=1';
   if (campus == "Busch" && meal == "Dinner")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=04&locationName=Busch+Dining+Hall&dtdate=12/5/2018&mealName=Dinner&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=04&locationName=Busch+Dining+Hall&dtdate=3/9/2019&mealName=Dinner&sName=Rutgers+University+Dining';
   if (campus == "Busch" && meal == "Knight")
     url1 =
         'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=04&locationName=Busch+Dining+Hall&dtdate=12/5/2018&mealName=Knight+Room&sName=Rutgers+University+Dining';
@@ -449,37 +572,37 @@ _launchURL() async {
         'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=03&locationName=Livingston+Dining+Commons&naFlag=';
   if (campus == "Livingston" && meal == "Lunch")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=03&locationName=Livingston+Dining+Commons&dtdate=12/5/2018&mealName=Lunch&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=03&locationName=Livingston+Dining+Commons&naFlag=';
   if (campus == "Livingston" && meal == "Dinner")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=03&locationName=Livingston+Dining+Commons&dtdate=12/5/2018&mealName=Dinner&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=03&locationName=Livingston+Dining+Commons&dtdate=3/10/2019&mealName=Dinner&sName=Rutgers+University+Dining';
   if (campus == "Livingston" && meal == "Knight")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=03&locationName=Livingston+Dining+Commons&dtdate=12/5/2018&mealName=Knight+Room&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=03&locationName=Livingston+Dining+Commons&dtdate=3/10/2019&mealName=Knight+Room&sName=Rutgers+University+Dining';
   if (campus == "CollegeAve" && meal == "Breakfast")
     url1 =
         'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=01&locationName=Brower+Commons&naFlag=1';
   if (campus == "CollegeAve" && meal == "Lunch")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=01&locationName=Brower+Commons&dtdate=12/5/2018&mealName=Lunch&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=01&locationName=Brower+Commons&naFlag=1';
   if (campus == "CollegeAve" && meal == "Dinner")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=01&locationName=Brower+Commons&dtdate=12/5/2018&mealName=Dinner&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=01&locationName=Brower+Commons&dtdate=3/10/2019&mealName=Dinner&sName=Rutgers+University+Dining';
   if (campus == "CollegeAve" && meal == "Knight")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=01&locationName=Brower+Commons&dtdate=12/5/2018&mealName=Knight+Room&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=01&locationName=Brower+Commons&dtdate=3/10/2019&mealName=Knight+Room&sName=Rutgers+University+Dining';
   if (campus == "CookDouglass" && meal == "Breakfast")
     url1 =
         'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=05&locationName=Neilson+Dining+Hall&naFlag=1';
   if (campus == "CookDouglass" && meal == "Lunch")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=05&locationName=Neilson+Dining+Hall&dtdate=12/5/2018&mealName=Lunch&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?sName=Rutgers+University+Dining&locationNum=05&locationName=Neilson+Dining+Hall&naFlag=1';
   if (campus == "CookDouglass" && meal == "Dinner")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=05&locationName=Neilson+Dining+Hall&dtdate=12/5/2018&mealName=Dinner&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=05&locationName=Neilson+Dining+Hall&dtdate=3/10/2019&mealName=Dinner&sName=Rutgers+University+Dining';
   if (campus == "CookDouglass" && meal == "Knight")
     url1 =
-        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=05&locationName=Neilson+Dining+Hall&dtdate=12/5/2018&mealName=Knight+Room&sName=Rutgers+University+Dining';
+        'http://menuportal.dining.rutgers.edu/FoodPro/pickmenu.asp?locationNum=05&locationName=Neilson+Dining+Hall&dtdate=3/10/2019&mealName=Knight+Room&sName=Rutgers+University+Dining';
   if (url1 == null) return;
   if (await canLaunch(url1)) {
     await launch(url1);
