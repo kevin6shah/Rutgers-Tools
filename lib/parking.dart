@@ -481,7 +481,7 @@ class GeneralPage extends StatelessWidget {
             padding: EdgeInsets.only(left: 5.0, right: 5.0),
             child: GestureDetector(
               onTap: () {
-                _launchURL();
+                _launchURL(campusSelected);
               },
               child: Card(
                 child: Container(
@@ -501,8 +501,17 @@ class GeneralPage extends StatelessWidget {
   }
 }
 
-_launchURL() async {
-  String url1 = 'https://maps.rutgers.edu/#/?lat=40.500753&lng=-74.447925&parking=true&sidebar=true&zoom=13';
+_launchURL(String campusSelected) async {
+  String url1;
+  if (campusSelected == "Livingston") {
+    url1 = 'https://maps.rutgers.edu/#/?lat=40.521767332360724&lng=-74.43625824865721&parking=true&sidebar=true&zoom=15';
+  } else if (campusSelected == "Busch") {
+    url1 = 'https://maps.rutgers.edu/#/?lat=40.523965604683035&lng=-74.46209419573974&parking=true&sidebar=true&zoom=15';
+  } else if (campusSelected == "College Avenue") {
+    url1 = 'https://maps.rutgers.edu/#/?lat=40.501518878103745&lng=-74.44983917462167&parking=true&sidebar=true&zoom=15';
+  } else if (campusSelected == "Cook/Douglass") {
+    url1 = 'https://maps.rutgers.edu/#/?lat=40.480906778546604&lng=-74.4337892275391&parking=true&sidebar=true&zoom=15';
+  }
   if (await canLaunch(url1)) {
     await launch(url1);
   } else {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dininghall.dart';
 import 'parking.dart';
 import 'academic.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(
       MaterialApp(home: MyApp()),
@@ -83,6 +84,33 @@ class _MyApp extends State<MyApp> {
                   padding: EdgeInsets.all(35.0),
                 ),
               ),
+              Text(
+                "Rutgers Tools",
+                style: TextStyle(
+                  color: Colors.red[900],
+                  fontSize: 20.0,
+                  fontFamily: 'Raleway',
+                  fontStyle: FontStyle.italic,
+                  letterSpacing: 3.0,
+                ),
+              ),
+              Divider(
+                color: Colors.transparent,
+                height: 5.0,
+              ),
+              Text(
+                "Kevin Shah",
+                style: TextStyle(
+                  color: Colors.blue[900],
+                  fontSize: 15.0,
+                  fontFamily: 'Raleway',
+                  letterSpacing: 3.0,
+                ),
+              ),
+              Divider(
+                color: Colors.transparent,
+                height: 25.0,
+              ),
               ListTile(
                 leading: Icon(
                   Icons.local_dining,
@@ -138,6 +166,58 @@ class _MyApp extends State<MyApp> {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Academic()));
+                },
+                contentPadding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+              ),
+              ListTile(
+                leading: Hero(
+                  tag: 'Sakai',
+                  child: Icon(
+                    Icons.business_center,
+                    color: Colors.amber[900],
+                  ),
+                  transitionOnUserGestures: true,
+                ),
+                title: Text('Sakai',
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 15.0,
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.bold)),
+                onTap: () async {
+                  if (await canLaunch(
+                      "https://cas.rutgers.edu/login?service=https%3A%2F%2Fsakai.rutgers.edu%2Fsakai-login-tool%2Fcontainer")) {
+                    await launch(
+                        "https://cas.rutgers.edu/login?service=https%3A%2F%2Fsakai.rutgers.edu%2Fsakai-login-tool%2Fcontainer");
+                  } else {
+                    throw 'Could not launch https://cas.rutgers.edu/login?service=https%3A%2F%2Fsakai.rutgers.edu%2Fsakai-login-tool%2Fcontainer';
+                  }
+                },
+                contentPadding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+              ),
+              ListTile(
+                leading: Hero(
+                  tag: 'BlackBoard',
+                  child: Icon(
+                    Icons.developer_board,
+                    color: Colors.brown,
+                  ),
+                  transitionOnUserGestures: true,
+                ),
+                title: Text('Blackboard',
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 15.0,
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.bold)),
+                onTap: () async {
+                  if (await canLaunch(
+                      "https://blackboard.rutgers.edu/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_1_1")) {
+                    await launch(
+                        "https://blackboard.rutgers.edu/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_1_1");
+                  } else {
+                    throw 'Could not launch https://blackboard.rutgers.edu/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_1_1';
+                  }
                 },
                 contentPadding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
               ),
