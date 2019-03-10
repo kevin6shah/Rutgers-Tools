@@ -24,5 +24,6 @@ Here are some screenshots:
 </p>
 
 <p float="left">
-<img src="assets/Img9.png" width="400" />
+  <img src="assets/Img9.png" width="400" />
+  <img src="assets/Img10.png" width="400" />
 </p>
