@@ -3,12 +3,22 @@ A simple Rutgers Dining Hall and Parking app I made on Flutter.io
 
 Here are some screenshots:
 
-![Alt text](assets/Screenshot_1543991254.png)
-![Alt text](assets/Screenshot_1543991274.png)
-![Alt text](assets/Screenshot_1543991287.png)
-![Alt text](assets/Screenshot_1543991297.png)
-![Alt text](assets/Screenshot_1543991335.png)
-![Alt text](assets/Screenshot_1543991311.png)
-![Alt text](assets/Screenshot_1543991322.png)
-![Alt text](assets/Screenshot_1543991327.png)
+<p float="left">
+  <img src="assets/Img1.png" width="400" />
+  <img src="assets/Img2.png" width="400" /> 
+</p>
 
+<p float="left">
+  <img src="assets/Img3.png" width="400" />
+  <img src="assets/Img4.png" width="400" /> 
+</p>
+
+<p float="left">
+  <img src="assets/Img5.png" width="400" />
+  <img src="assets/Img6.png" width="400" /> 
+</p>
+
+<p float="left">
+  <img src="assets/Img7.png" width="400" />
+  <img src="assets/Img8.png" width="400" /> 
+</p>
